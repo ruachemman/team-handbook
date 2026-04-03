@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>JDJ Systems – Company Handbook</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet"/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
+  <style>
+    :root {
+      --navy:   #0d1b3e;
+      --purple: #6c3fc5;
+      --blue:   #2563eb;
+      --light-purple: #a78bfa;
+      --light-blue:   #93c5fd;
+      --bg:     #f4f6fb;
+      --card:   #ffffff;
+      --text:   #1e293b;
+      --muted:  #64748b;
+      --border: #e2e8f0;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    /* ── HEADER ── */
+    header {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--purple) 100%);
+      color: white;
+      padding: 60px 40px 50px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    header::before {
+      content: '';
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 300px; height: 300px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 50%;
+    }
+    header::after {
+      content: '';
+      position: absolute;
+      bottom: -80px; left: -40px;
+      width: 250px; height: 250px;
+      background: rgba(255,255,255,0.04);
+      border-radius: 50%;
+    }
+    .header-logo {
+      font-size: 3rem;
+      font-weight: 700;
+      letter-spacing: 4px;
+      background: linear-gradient(90deg, #fff, var(--light-purple));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .header-sub {
+      font-size: 1rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--light-blue);
+      margin-top: 6px;
+    }
+
+    /* ── NAV ── */
+    nav {
+      background: var(--navy);
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 4px;
+      padding: 0 20px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.3);
+    }
+    nav a {
+      color: var(--light-blue);
+      text-decoration: none;
+      padding: 14px 18px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      border-bottom: 3px solid transparent;
+      transition: all 0.2s;
+    }
+    nav a:hover {
+      color: white;
+      border-bottom-color: var(--light-purple);
+    }
+
+    /* ── MAIN LAYOUT ── */
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 50px 24px 80px;
+    }
+
+    /* ── SECTION ── */
+    section {
+      margin-bottom: 60px;
+    }
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 28px;
+      padding-bottom: 14px;
+      border-bottom: 2px solid var(--border);
+    }
+    .section-icon {
+      width: 46px; height: 46px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--blue), var(--purple));
+      display: flex; align-items: center; justify-content: center;
+      color: white;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+    .section-title {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--navy);
+    }
+    .section-number {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--purple);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    /* ── CARDS ── */
+    .card {
+      background: var(--card);
+      border-radius: 14px;
+      padding: 28px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+      border: 1px solid var(--border);
+      margin-bottom: 20px;
+    }
+    .card h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--purple);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .card p { color: var(--text); font-size: 0.95rem; }
+
+    /* ── TEAM TABLE ── */
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+    .team-card {
+      background: var(--card);
+      border-radius: 14px;
+      padding: 28px 24px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+      border: 1px solid var(--border);
+      text-align: center;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .team-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(108,63,197,0.15);
+    }
+    .team-avatar {
+      width: 64px; height: 64px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--blue), var(--purple));
+      display: flex; align-items: center; justify-content: center;
+      color: white;
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin: 0 auto 16px;
+    }
+    .team-name { font-size: 1.1rem; font-weight: 700; color: var(--navy); }
+    .team-role {
+      display: inline-block;
+      margin: 6px 0 14px;
+      padding: 3px 12px;
+      border-radius: 20px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      background: linear-gradient(135deg, var(--blue), var(--purple));
+      color: white;
+    }
+    .team-meta { font-size: 0.85rem; color: var(--muted); }
+    .team-meta span { display: block; margin: 3px 0; }
+    .team-meta i { width: 16px; color: var(--purple); }
+
+    /* ── VALUES ── */
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 18px;
+    }
+    .value-card {
+      background: linear-gradient(135deg, #f8f4ff, #eef2ff);
+      border: 1px solid #ddd6fe;
+      border-left: 4px solid var(--purple);
+      border-radius: 12px;
+      padding: 22px;
+    }
+    .value-card h4 {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--purple);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .value-card p { font-size: 0.92rem; color: var(--text); }
+
+    /* ── TABLES ── */
+    .table-wrap { overflow-x: auto; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--card);
+      font-size: 0.9rem;
+    }
+    thead tr {
+      background: linear-gradient(135deg, var(--navy), var(--purple));
+      color: white;
+    }
+    th {
+      padding: 14px 18px;
+      text-align: left;
+      font-weight: 600;
+      font-size: 0.82rem;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+    td { padding: 13px 18px; border-bottom: 1px solid var(--border); vertical-align: top; }
+    tbody tr:last-child td { border-bottom: none; }
+    tbody tr:hover { background: #f8f4ff; }
+    .badge {
+      display: inline-block;
+      padding: 2px 10px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+    .badge-sync { background: #dbeafe; color: #1d4ed8; }
+    .badge-async { background: #ede9fe; color: #6d28d9; }
+
+    /* ── BULLET LISTS ── */
+    .styled-list { list-style: none; padding: 0; }
+    .styled-list li {
+      padding: 10px 0 10px 30px;
+      position: relative;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.95rem;
+    }
+    .styled-list li:last-child { border-bottom: none; }
+    .styled-list li::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 18px;
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--blue), var(--purple));
+    }
+
+    /* ── TIERS ── */
+    .tier-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 18px;
+    }
+    .tier-card {
+      background: var(--card);
+      border-radius: 14px;
+      padding: 24px;
+      border: 1px solid var(--border);
+      box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+    }
+    .tier-card .tier-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: white;
+      background: linear-gradient(135deg, var(--blue), var(--purple));
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 20px;
+      margin-bottom: 12px;
+    }
+    .tier-card h4 { font-size: 1rem; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
+    .tier-card p { font-size: 0.88rem; color: var(--muted); margin-bottom: 6px; }
+
+    /* ── CONFLICT / ACCOUNTABILITY ── */
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 18px;
+    }
+    .info-card {
+      background: var(--card);
+      border-radius: 14px;
+      padding: 24px;
+      border: 1px solid var(--border);
+      box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+    }
+    .info-card .info-icon {
+      font-size: 1.6rem;
+      margin-bottom: 12px;
+      background: linear-gradient(135deg, var(--blue), var(--purple));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .info-card h4 { font-size: 0.95rem; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
+    .info-card p { font-size: 0.88rem; color: var(--muted); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--navy);
+      color: var(--light-blue);
+      text-align: center;
+      padding: 28px 20px;
+      font-size: 0.85rem;
+    }
+    footer strong { color: white; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 600px) {
+      header { padding: 40px 20px 35px; }
+      .header-logo { font-size: 2rem; }
+      nav a { padding: 10px 10px; font-size: 0.75rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-logo">JDJ SYSTEMS</div>
+  <div class="header-sub">Company Handbook</div>
+</header>
+
+<!-- NAV -->
+<nav>
+  <a href="#team"><i class="fa fa-users"></i> Team</a>
+  <a href="#communications"><i class="fa fa-comments"></i> Communications</a>
+  <a href="#decisions"><i class="fa fa-diagram-project"></i> Decisions</a>
+  <a href="#conflict"><i class="fa fa-handshake"></i> Conflict</a>
+  <a href="#accountability"><i class="fa fa-chart-line"></i> Accountability</a>
+</nav>
+
+<main>
+
+  <!-- ── SECTION 1: TEAM OVERVIEW ── -->
+  <section id="team">
+    <div class="section-header">
+      <div class="section-icon"><i class="fa fa-users"></i></div>
+      <div>
+        <div class="section-number">Section 01</div>
+        <div class="section-title">Team Overview</div>
+      </div>
+    </div>
+
+    <div class="team-grid">
+      <div class="team-card">
+        <div class="team-avatar">J</div>
+        <div class="team-name">Joshua</div>
+        <div class="team-role">Project Lead</div>
+        <div class="team-meta">
+          <span><i class="fa fa-globe"></i> AEST (UTC +10)</span>
+          <span><i class="fa fa-clock"></i> Mon – Fri, 9am – 5pm</span>
+          <span><i class="fa fa-envelope"></i> Slack, Teams & Email</span>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar">D</div>
+        <div class="team-name">Dayo</div>
+        <div class="team-role">Research Lead</div>
+        <div class="team-meta">
+          <span><i class="fa fa-globe"></i> AEST (UTC +10)</span>
+          <span><i class="fa fa-clock"></i> Mon – Fri, 9am – 5pm</span>
+          <span><i class="fa fa-envelope"></i> Slack, Teams & Email</span>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar">J</div>
+        <div class="team-name">Jane Doe</div>
+        <div class="team-role">Design Lead</div>
+        <div class="team-meta">
+          <span><i class="fa fa-globe"></i> AEST (UTC +10)</span>
+          <span><i class="fa fa-clock"></i> Mon – Fri, 9am – 5pm</span>
+          <span><i class="fa fa-envelope"></i> Slack, Teams & Email</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:8px;">
+      <h3><i class="fa fa-star"></i> Team Core Values & Principles</h3>
+    </div>
+    <div class="values-grid">
+      <div class="value-card">
+        <h4><i class="fa fa-check-circle"></i> Authenticity & Simplicity</h4>
+        <p>We show up to our clients as genuine, respectful professionals who communicate clearly and with direction. We believe in the values of honesty, trust and simplicity to help our clients achieve their business goals.</p>
+      </div>
+      <div class="value-card">
+        <h4><i class="fa fa-rotate"></i> Adaptability</h4>
+        <p>We remain committed and curious to learning our client's business and culture. We are open to change and committed to improvement — we adjust, review and deliver favourable impact.</p>
+      </div>
+      <div class="value-card">
+        <h4><i class="fa fa-shield-halved"></i> Resilience & Commitment</h4>
+        <p>We approach our work with total professionalism, care and determination. Our work should deliver a positive experience, support client businesses and persist through challenges with focus and accountability.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SECTION 2: COMMUNICATIONS ── -->
+  <section id="communications">
+    <div class="section-header">
+      <div class="section-icon"><i class="fa fa-comments"></i></div>
+      <div>
+        <div class="section-number">Section 02</div>
+        <div class="section-title">Communications Protocols</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <p>Communication at JDJ Systems keeps us aligned, efficient and connected. We operate two modes of communication and have clear guidelines on when to use each.</p>
+    </div>
+
+    <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr)); gap:18px; margin-bottom:28px;">
+      <div class="card">
+        <h3><i class="fa fa-bolt"></i> Synchronous Communication</h3>
+        <p>The primary driver of collaboration and team cohesion. We leverage real-time interaction through office workshops and virtual sessions to ensure every colleague — regardless of location — has access to collective team alignment. Virtual coffee chats are encouraged to build professional connections.</p>
+      </div>
+      <div class="card">
+        <h3><i class="fa fa-hourglass-half"></i> Asynchronous Communication</h3>
+        <p>Mastering async tools is essential to avoid dysfunction while ensuring efficiency, autonomy and hybrid flexibility. Every discussion, decision, design and project work is documented in a knowledge base — minimising burnout and encouraging clear objectives.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3 style="margin-bottom:16px;"><i class="fa fa-table"></i> Channel Communication Guide</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Channel</th>
+              <th>Type</th>
+              <th>When to Use</th>
+              <th>SLA – Response Time</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><i class="fa fa-video" style="color:var(--blue);margin-right:6px;"></i>Zoom (Video Calls)</td>
+              <td><span class="badge badge-sync">Sync</span></td>
+              <td>Collaboration meetings; Conflict resolution; Feedback analysis</td>
+              <td>Scheduled – 24hr to 1 week notice</td>
+            </tr>
+            <tr>
+              <td><i class="fa fa-chalkboard" style="color:var(--blue);margin-right:6px;"></i>Whiteboard / Screenshare (Zoom, Lucid)</td>
+              <td><span class="badge badge-sync">Sync</span></td>
+              <td>Visual ideation; Draft analysis; Design & architecture discussions</td>
+              <td>Scheduled – 24hr to 1 week notice</td>
+            </tr>
+            <tr>
+              <td><i class="fa fa-hashtag" style="color:var(--purple);margin-right:6px;"></i>Slack – Direct Messaging</td>
+              <td><span class="badge badge-sync">Sync</span></td>
+              <td>'Hallway' style conversations; Project task discussions</td>
+              <td>2 hours during work hours</td>
+            </tr>
+            <tr>
+              <td><i class="fa fa-file-lines" style="color:var(--purple);margin-right:6px;"></i>OneDrive – Document Collaboration</td>
+              <td><span class="badge badge-sync">Sync</span></td>
+              <td>Collaborative drafting; Agenda preparation before meetings</td>
+              <td>Before or during scheduled meetings</td>
+            </tr>
+            <tr>
+              <td><i class="fa fa-hashtag" style="color:var(--purple);margin-right:6px;"></i>Slack – Channels</td>
+              <td><span class="badge badge-async">Async</span></td>
+              <td>Progress updates; must include context, request or deadline</td>
+              <td>24 hours during business hours</td>
+            </tr>
+            <tr>
+              <td><i class="fa fa-share-nodes" style="color:var(--purple);margin-right:6px;"></i>OneDrive & SharePoint</td>
+              <td><span class="badge badge-async">Async</span></td>
+              <td>Drafting deliverables; Meeting minutes; Decision register</td>
+              <td>Async only</td>
+            </tr>
+            <tr>
+              <td><i class="fa fa-envelope" style="color:var(--purple);margin-right:6px;"></i>Email</td>
+              <td><span class="badge badge-async">Async</span></td>
+              <td>Formal records for internal and external communication</td>
+              <td>48 hours</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:20px;">
+      <h3 style="margin-bottom:16px;"><i class="fa fa-compass"></i> Choosing the Right Medium</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Communication Purpose</th>
+              <th>When to Use</th>
+              <th>Channels to Use</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Sharing Information</strong><br><small>Unidirectional</small></td>
+              <td>Announcing task completion; Draft distribution; Progress updates</td>
+              <td>Slack Channels; OneDrive; SharePoint; Email</td>
+            </tr>
+            <tr>
+              <td><strong>Building Shared Understanding</strong><br><small>Bidirectional alignment</small></td>
+              <td>Requesting feedback; Exploring ideas; Alignment on scope & architecture</td>
+              <td>Slack Channels; SharePoint; Impromptu Zoom calls</td>
+            </tr>
+            <tr>
+              <td><strong>Agreement Decisions</strong></td>
+              <td>Decisions or course of action; Conflict resolution; Unresolved async exchanges</td>
+              <td>Zoom; ScreenShare (Zoom or Lucid)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:20px;">
+      <h3 style="margin-bottom:14px;"><i class="fa fa-list-check"></i> Communication Guidelines</h3>
+      <ul class="styled-list">
+        <li>Always begin with a positive mindset and attitude when communicating with colleagues</li>
+        <li>Express your thoughts, opinions and feelings in a kind and professional manner</li>
+        <li>Be a role model, while owning tasks and responsibilities in the work we do</li>
+        <li>Feedback should be shared in a professional and constructive manner without criticism</li>
+        <li>Prefer video calls using digital tools when 1:1 communication is insufficient</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ── SECTION 3: DECISION STRUCTURE ── -->
+  <section id="decisions">
+    <div class="section-header">
+      <div class="section-icon"><i class="fa fa-diagram-project"></i></div>
+      <div>
+        <div class="section-number">Section 03</div>
+        <div class="section-title">Decision Structure</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <p>All decisions begin with a proposal — when a team member identifies an opportunity for improvement or project enhancement. Every proposal must include: a clear description, a business impact assessment, and a review process with relevant stakeholders.</p>
+    </div>
+
+    <div class="tier-grid" style="margin-top:20px;">
+      <div class="tier-card">
+        <div class="tier-label">Direct Commit</div>
+        <h4>Low-Impact Changes</h4>
+        <p><strong>When:</strong> Automation after approval; naming, formatting and routine requirements met; rollback allowed without affecting production.</p>
+        <p><strong>Process:</strong> Deciding member reviews, tags #MARKED APPROVE and merges. Automated document of changes lodged to SharePoint.</p>
+        <p><strong>Log:</strong> Name of task and proposed changes</p>
+      </div>
+      <div class="tier-card">
+        <div class="tier-label">Pull Request</div>
+        <h4>Code & Workflow Changes</h4>
+        <p><strong>When:</strong> Changes to code, workflow scripts or tooling; improving work processes.</p>
+        <p><strong>Process:</strong> Team member proposes and documents to SharePoint. Async discussion — if approved, moves forward; if not, an RFC is developed.</p>
+        <p><strong>Log:</strong> Proposal, reviewers, decision stakeholders; SharePoint, Jira</p>
+      </div>
+      <div class="tier-card">
+        <div class="tier-label">RFC</div>
+        <h4>Breaking Changes</h4>
+        <p><strong>When:</strong> Alters direction, workflow or architecture. Must be completed by the whole team.</p>
+        <p><strong>Process:</strong> Structured async contribution. If no decision is reached, sync meetings are held. Project Lead holds final say after PoC testing.</p>
+        <p><strong>Log:</strong> Direction, rationale, different views on record; SharePoint, development platform</p>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:20px;">
+      <h3 style="margin-bottom:12px;"><i class="fa fa-flag"></i> Raising Objections</h3>
+      <p>Every request or proposal has an owner, a start and completion date. When a blocker is raised, it must contain valid reasons for clarity and contextualisation. After a consensus decision, concerns must be documented in SharePoint and acknowledged by the project lead — even when results do not change.</p>
+    </div>
+
+    <div class="card" style="margin-top:16px;">
+      <h3 style="margin-bottom:12px;"><i class="fa fa-microphone"></i> Acknowledging All Voices</h3>
+      <p>The project lead actively tags all relevant members — discussions are mandatory for all to contribute. Any objections should be tabled and discussed. Anonymous contributions carry equal weight and consideration.</p>
+    </div>
+  </section>
+
+  <!-- ── SECTION 4: CONFLICT RESOLUTION ── -->
+  <section id="conflict">
+    <div class="section-header">
+      <div class="section-icon"><i class="fa fa-handshake"></i></div>
+      <div>
+        <div class="section-number">Section 04</div>
+        <div class="section-title">Conflict Resolution</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <p>When conflicts arise over scope, architecture or direction — through professional disagreement, repeated misinterpretation or withdrawal — the project lead is responsible for identifying these and taking the necessary action to resolve them.</p>
+    </div>
+
+    <div class="info-grid" style="margin-top:20px;">
+      <div class="info-card">
+        <div class="info-icon"><i class="fa fa-earth-asia"></i></div>
+        <h4>Team Differences</h4>
+        <p>Team members bring different cultural defaults. Every member must separate spoken or written words from the person — uniformity must not be assumed when dealing with interpersonal issues.</p>
+      </div>
+      <div class="info-card">
+        <div class="info-icon"><i class="fa fa-heart"></i></div>
+        <h4>Assume Positive Intent</h4>
+        <p>When conflict erupts, start with curiosity and seek clarity. Avoid raising public concerns on Slack. Private exchanges must be respectful, professional and addressed constructively.</p>
+      </div>
+      <div class="info-card">
+        <div class="info-icon"><i class="fa fa-arrow-up-right-dots"></i></div>
+        <h4>Escalation</h4>
+        <p>If a private exchange has not resolved the issue, notify the project lead. Either concerned party may make the request — it cannot be declined. The project lead will facilitate with HR present.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SECTION 5: ACCOUNTABILITY ── -->
+  <section id="accountability">
+    <div class="section-header">
+      <div class="section-icon"><i class="fa fa-chart-line"></i></div>
+      <div>
+        <div class="section-number">Section 05</div>
+        <div class="section-title">Accountability & Expectation</div>
+      </div>
+    </div>
+
+    <div class="info-grid">
+      <div class="info-card">
+        <div class="info-icon"><i class="fa fa-list-check"></i></div>
+        <h4>Task Assignment & Tracking</h4>
+        <p>All work items are assigned a task owner with full responsibility. Tasks are managed in a Kanban Jira board (To Do → In Progress → Done). In-Progress tasks have a 48-hour status update requirement, auto-tracked to Slack.</p>
+      </div>
+      <div class="info-card">
+        <div class="info-icon"><i class="fa fa-people-group"></i></div>
+        <h4>Contribution & Participation</h4>
+        <p>Every team member is a leader in their deliverables. Members must self-manage workload, proactively respond to blockers, and maintain shared accountability of outcomes.</p>
+      </div>
+      <div class="info-card">
+        <div class="info-icon"><i class="fa fa-scale-balanced"></i></div>
+        <h4>Workload Equity</h4>
+        <p>Workload is formally reviewed during weekly sync sprint meetings. Imbalances are addressed by reallocation. Any member can raise concerns without vilification.</p>
+      </div>
+      <div class="info-card">
+        <div class="info-icon"><i class="fa fa-triangle-exclamation"></i></div>
+        <h4>Addressing Performance Issues</h4>
+        <p>The project lead intervenes first through a private check-in. Further issues are escalated to HR. Public callouts are strongly prohibited.</p>
+      </div>
+      <div class="info-card">
+        <div class="info-icon"><i class="fa fa-bell"></i></div>
+        <h4>Responsiveness Standards</h4>
+        <p>Responses to team communication are expected within 24 hours on business days. Availability notices should be posted in #Notification with 24hr to 1 week prior notice.</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <p><strong>JDJ Systems</strong> &nbsp;·&nbsp; Company Handbook &nbsp;·&nbsp; Developed with AI-assisted resources</p>
+  <p style="margin-top:6px; font-size:0.78rem; opacity:0.7;">© 2026 JDJ Systems. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
