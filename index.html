@@ -342,6 +342,74 @@
     }
     footer strong { color: white; }
 
+    /* ── FLOWCHART ── */
+    .flowchart { display: flex; flex-direction: column; align-items: center; padding: 10px 0; }
+    .fc-row { display: flex; justify-content: center; width: 100%; margin-bottom: 0; }
+    .fc-node {
+      padding: 11px 26px; border-radius: 10px; font-size: 0.88rem; font-weight: 600;
+      text-align: center; min-width: 200px;
+    }
+    .fc-start {
+      background: linear-gradient(135deg, var(--navy), var(--purple));
+      color: white; border-radius: 30px;
+    }
+    .fc-process { background: #eef2ff; border: 2px solid var(--blue); color: var(--navy); }
+    .fc-diamond-wrap { display: flex; justify-content: center; margin: 4px 0; }
+    .fc-diamond {
+      background: linear-gradient(135deg, var(--blue), var(--purple));
+      color: white; font-size: 0.88rem; font-weight: 700;
+      padding: 18px 36px; text-align: center;
+      clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+      min-width: 230px; min-height: 80px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .fc-arrow {
+      display: flex; flex-direction: column; align-items: center;
+      margin: 2px 0;
+    }
+    .fc-arrow .fc-line { width: 2px; height: 24px; background: var(--purple); }
+    .fc-arrow .fc-head {
+      width: 0; height: 0;
+      border-left: 7px solid transparent;
+      border-right: 7px solid transparent;
+      border-top: 9px solid var(--purple);
+    }
+    .fc-branches {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 16px; width: 100%; margin-top: 6px;
+    }
+    .fc-branch { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+    .fc-branch-label {
+      font-size: 0.72rem; font-weight: 700; color: white;
+      text-transform: uppercase; letter-spacing: 0.5px;
+      padding: 3px 12px; border-radius: 20px; margin-bottom: 4px;
+    }
+    .fc-branch-label.low  { background: #16a34a; }
+    .fc-branch-label.mid  { background: var(--blue); }
+    .fc-branch-label.high { background: #9333ea; }
+    .fc-tier { font-size: 0.88rem; font-weight: 700; border-radius: 10px; padding: 10px 18px; text-align: center; width: 100%; }
+    .fc-tier.low  { background: #dcfce7; border: 2px solid #16a34a; color: #14532d; }
+    .fc-tier.mid  { background: #dbeafe; border: 2px solid var(--blue); color: #1e3a8a; }
+    .fc-tier.high { background: #f3e8ff; border: 2px solid #9333ea; color: #581c87; }
+    .fc-step {
+      background: #f8f4ff; border: 1px solid #ddd6fe; color: var(--text);
+      font-size: 0.82rem; border-radius: 8px; padding: 9px 14px;
+      text-align: center; width: 100%;
+    }
+    .fc-q {
+      background: #ede9fe; border: 2px dashed var(--purple); color: var(--navy);
+      font-size: 0.82rem; border-radius: 20px; padding: 9px 14px;
+      text-align: center; width: 100%; font-weight: 600;
+    }
+    .fc-end-node {
+      background: var(--navy); color: white; font-size: 0.8rem;
+      border-radius: 8px; padding: 9px 14px; text-align: center; width: 100%;
+    }
+    @media (max-width: 700px) {
+      .fc-branches { grid-template-columns: 1fr; }
+      .fc-diamond { min-width: 180px; padding: 14px 24px; }
+    }
+
     /* ── RESPONSIVE ── */
     @media (max-width: 600px) {
       header { padding: 40px 20px 35px; }
@@ -595,6 +663,54 @@
         <p><strong>When:</strong> Alters direction, workflow or architecture. Must be completed by the whole team.</p>
         <p><strong>Process:</strong> Structured async contribution. If no decision is reached, sync meetings are held. Project Lead holds final say after PoC testing.</p>
         <p><strong>Log:</strong> Direction, rationale, different views on record; SharePoint, development platform</p>
+      </div>
+    </div>
+
+    <!-- FLOWCHART -->
+    <div class="card" style="margin-top:20px;">
+      <h3 style="margin-bottom:20px;"><i class="fa fa-sitemap"></i> Decision Flow</h3>
+      <div class="flowchart">
+
+        <div class="fc-row"><div class="fc-node fc-start"><i class="fa fa-lightbulb"></i> &nbsp;New Proposal</div></div>
+        <div class="fc-arrow"><div class="fc-line"></div><div class="fc-head"></div></div>
+
+        <div class="fc-row"><div class="fc-node fc-process">Describe change &amp; assess business impact</div></div>
+        <div class="fc-arrow"><div class="fc-line"></div><div class="fc-head"></div></div>
+
+        <div class="fc-diamond-wrap"><div class="fc-diamond">What is the impact level?</div></div>
+        <div class="fc-arrow"><div class="fc-line"></div><div class="fc-head"></div></div>
+
+        <div class="fc-branches">
+          <div class="fc-branch">
+            <span class="fc-branch-label low">Low Impact</span>
+            <div class="fc-tier low">Direct Commit</div>
+            <div class="fc-arrow"><div class="fc-line"></div><div class="fc-head"></div></div>
+            <div class="fc-step">Deciding member reviews &amp; tags <strong>#MARKED APPROVE</strong></div>
+            <div class="fc-arrow"><div class="fc-line"></div><div class="fc-head"></div></div>
+            <div class="fc-end-node">Merge &amp; log to SharePoint</div>
+          </div>
+          <div class="fc-branch">
+            <span class="fc-branch-label mid">Code / Workflow</span>
+            <div class="fc-tier mid">Pull Request</div>
+            <div class="fc-arrow"><div class="fc-line"></div><div class="fc-head"></div></div>
+            <div class="fc-step">Propose &amp; document to SharePoint. Async discussion.</div>
+            <div class="fc-arrow"><div class="fc-line"></div><div class="fc-head"></div></div>
+            <div class="fc-q">Approved?</div>
+            <div class="fc-arrow"><div class="fc-line"></div><div class="fc-head"></div></div>
+            <div class="fc-end-node">Yes → Proceed &nbsp;|&nbsp; No → Develop RFC</div>
+          </div>
+          <div class="fc-branch">
+            <span class="fc-branch-label high">Breaking Change</span>
+            <div class="fc-tier high">RFC</div>
+            <div class="fc-arrow"><div class="fc-line"></div><div class="fc-head"></div></div>
+            <div class="fc-step">Structured async — whole team contributes</div>
+            <div class="fc-arrow"><div class="fc-line"></div><div class="fc-head"></div></div>
+            <div class="fc-q">Decision reached?</div>
+            <div class="fc-arrow"><div class="fc-line"></div><div class="fc-head"></div></div>
+            <div class="fc-end-node">Yes → Proceed &nbsp;|&nbsp; No → Sync Meeting → Project Lead decides</div>
+          </div>
+        </div>
+
       </div>
     </div>
 
